@@ -1,402 +1,117 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset='UTF-8'/><meta content='width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5' name='viewport'/><meta content='IE=edge' http-equiv='X-UA-Compatible'/>
- 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Antique:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
-<script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
-<script src="https://kit.fontawesome.com/4f3ce16e3e.js" crossorigin="anonymous"></script>
-  
-<title>Happy Birthday</title>
-<link rel="icon" type="image/x-icon" href="https://malasid.github.io/favicon.png">
-<meta name="description" content="HTML Bucin Malas.id">
+  <meta charset='UTF-8'/>
+  <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=5'/>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'/>
+  <title>Pesan Penyemangat</title>
+  <link rel="icon" type="image/x-icon" href="https://malasid.github.io/favicon.png">
+  <meta name="description" content="Pesan motivasi spesial buat kamu!">
 
-<style>
-:root {
-  --gaya-font-1: 'Shippori Antique', sans-serif;
-  --gaya-font-2: 'Dancing Script', cursive;
-}
-html {
-  transition: all .5s ease;
-  padding: 1px
-}
-body {
-  font-family: var(--gaya-font-1);
-  background-color: #101010;
-  color: #fff;
-  transition: all .3s ease;
-  overflow: hidden
-}
-.sembunyi {
-  display: none !important
-}
-#bodyblur {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #101010;
-  z-index: -1;
-  transition: all 1s ease
-}
-#bodyblur img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: all 1s ease
-}
-#beneranblur {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, .3);
-  z-index: -1
-}
-#Content {
-  font-family: var(--gaya-font-1);
-  width: 90%;
-  height: 100%;
-  margin: 0 auto;
-  color: #fff;
-  position: relative;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  transition: all 1s ease
-}
-.kumpulanstiker {
-  position: absolute;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  align-items: center
-}
-.kumpulanstiker img {
-  width: 130px;
-  height: 130px;
-  margin: 20px;
-  transition: all .8s ease-in-out
-}
-#kadoIn {
-  font-size: 15px;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  text-align: center;
-  margin: 30px 20px;
-  transition: all 1s ease;
-  z-index: 99;
-  cursor: pointer;
-}
-#kadoIn img {
-  transition: all .6s ease;
-  width: 150px;
-  height: 150px
-}
-#kadoIn img:hover {
-  transform: scale(1.1)
-}
-#ket {
-  font-size: 14px;
-  position: absolute;
-  color: #fff;
-  text-align: center;
-  margin: 30px auto;
-  z-index: 99;
-}
-#halo {
-  font-size: 18px;
-  position: absolute;
-  text-shadow: 0 2px 2px #000
-}
-blockquote {
-  position: relative;
-  margin-top: 100px;
-  margin-left: 0;
-  margin-right: 0;
-  opacity: 0;
-  transition: all 1s ease
-}
-blockquote p {
-  font-size: 17px;
-  font-weight: 700;
-  line-height: 1.3em;
-  transition: all .4s ease;
-  text-shadow: 0 1px 1px #000
-}
-blockquote #kalimat {
-  text-align: center
-}
-blockquote .gaya2 {
-  font-family: var(--gaya-font-2);
-  font-size: 20px;
-  font-weight: 400;
-  text-shadow: 0 1px 1px #000
-}
-blockquote #kolombaru {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin: 0 auto;
-  opacity: 0;
-  transition: all .7s ease
-}
-blockquote #kolombaru li {
-  display: inline-block;
-  list-style-type: none;
-  margin: 5px
-}
-blockquote #kolombaru li {
-  font-size: 25px;
-  transition: all .3s ease
-}
-blockquote #kolombaru li:hover {
-  transform: scale(1.1);
-  cursor: pointer
-}
-#opsL {
-  position: absolute;
-  margin-top: 50px;
-  font-size: 13px;
-  font-weight: 700;
-  opacity: 0;
-  transition: all .7s ease
-}
-#Tombol {
-  position: relative;
-  opacity: 0;
-  margin: 100px 0 0 0;
-  transition: all .8s ease
-}
-#Tombol a {
-  text-shadow: 0 1px 1px #000;
-  font-size: 14px;
-  font-weight: 700;
-  color: #fff;
-  background: #6A3828;
-  border-radius: 8px;
-  padding: 10px 20px;
-  transition: all .3s ease
-}
-#Tombol a:hover {
-  transform: scale(1.05)
-}
-</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Antique:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
+  <script src="https://kit.fontawesome.com/4f3ce16e3e.js" crossorigin="anonymous"></script>
+  <link href="https://feeldreams.github.io/heihbd/style.css" rel="stylesheet"/>
 </head>
 <body>
-  
-   <audio src="https://feeldreams.github.io/djikhlas.mp3" id="linkmp3" class="sembunyi"></audio>
-   
-   <div id="bodyblur">
-     <img src="https://feeldreams.github.io/wp9.jpg" id="wallpaper"/><div id="beneranblur"></div>
-   </div>
-   
-   <div id='Content'>
 
-     <div id="kadoIn">
-       <img src="https://feeldreams.github.io/kadoin.png"/>
-     </div>
-     <p id="ket">Klik Kadonya!</p>
+  <!-- Audio -->
+  <audio src="https://feeldreams.github.io/djikhlas.mp3" id="linkmp3" class="sembunyi"></audio>
 
-     <div class="kumpulanstiker">
-         <img src="https://feeldreams.github.io/bunga.gif" id="fotostiker"/>
-         <img src="https://feeldreams.github.io/pusn.gif" id="fotostiker1"/>
-         <img src="https://feeldreams.github.io/pandacoklat.gif" id="fotostiker2"/>
-         <img src="https://feeldreams.github.io/cilukba.gif" id="fotostiker3"/>
-         <img src="https://feeldreams.github.io/pandakuning.gif" id="fotostiker4"/>
-         <img src="https://feeldreams.github.io/emawh.gif" id="fotostiker5"/>
-         <img src="https://feeldreams.github.io/pandacoklat.gif" id="fotostiker6"/>
-     </div>
-     
-     <p id="halo" class="halo"></p>
-     
-     <div><blockquote id='bq' data-text='㋡'>
-       <p id="kalimat">Aku Ada Sesuatu Nih 🤣❤️</p>
+  <!-- Background dari gambar kamu -->
+  <div id="bodyblur">
+    <img src="1000297335.jpg" id="wallpaper"/>
+    <div id="beneranblur"></div>
+  </div>
 
-       <p id="pesan1">Klik 4 LOVE di Bawah! 😆❤️</p>
-       <div id="kolombaru">
-         <li id="lv1">🤍</li>
-         <li id="lv2">🤍</li>
-         <li id="lv3">🤍</li>
-         <li id="lv4">🤍</li>
-       </div>
+  <div id="Content">
 
-       <p id="pesan2">Tunggu...</p>
-       <p id="pesan3">Ciee.. Ada yang Ultah Nih 🤣❤️</p>
-       <p id="pesan4">Happy Birthday, </p>
-       <p id="pesan5" class="gaya2">Nambah tua aja ya, hehe</p>
-       <p id="pesan6" class="gaya2">Moga panjang umur biar tiap tahun bisa traktirin aku wkwk 😆❤️</p>
-       <p id="pesan7" class="gaya2">Sehat selalu ya!</p>
+    <!-- Ganti jadi ikon surat -->
+    <div id="kadoIn">
+      <img src="https://feeldreams.github.io/envelope.png"/>
+    </div>
+    <p id="ket">Klik Suratnya!</p>
 
-       <p id="pesan8" class="gaya2">Canda wkwwk :v</p>
-       <p id="pesan9" class="gaya2">Oh iya, semoga di hari spesialmu ini kamu dapat menjadi pribadi yang lebih baik yaa.. 🥳❤️</p>
-       <p id="pesan10" class="gaya2">Happy Level Up Day!! 🥳</p>
+    <!-- Stiker -->
+    <div class="kumpulanstiker">
+      <img src="https://feeldreams.github.io/bunga.gif" id="fotostiker"/>
+      <img src="https://feeldreams.github.io/pusn.gif" id="fotostiker1"/>
+      <img src="https://feeldreams.github.io/pandacoklat.gif" id="fotostiker2"/>
+    </div>
 
-       <p id="opsL">Klik untuk Lanjut</p>
-     </blockquote></div>
+    <p id="halo" class="halo"></p>
 
-     <div id="Tombol"><a id="By">&#128140; Lanjut</a></div>
+    <div><blockquote id='bq' data-text='㋡'>
+      <p id="kalimat">Aku Ada Sesuatu Nih 🥺✨</p>
 
-     <p id="katatambahan" class="sembunyi">Gajadi deh soalnya kamu bau wleee 😜</p>
-     
-     <div id="pesanditolak">
-       <img id="stikerditolak" src="https://feeldreams.github.io/weee.gif"/>
-       <p id="kataditolak">Yaudah kalo gamau mh 😜</p>
-     </div>
+      <p id="pesan1">Klik 4 LOVE di Bawah! 😄❤️</p>
+      <div id="kolombaru">
+        <li id="lv1">❤️</li>
+        <li id="lv2">❤️</li>
+        <li id="lv3">❤️</li>
+        <li id="lv4">❤️</li>
+      </div>
 
-   </div>
+      <p id="pesan2">Sebentar ya...</p>
+      <p id="pesan3">Hey kamu, iya kamu 😄</p>
+      <p id="pesan4">Aku cuma mau bilang...</p>
+      <p id="pesan5" class="gaya2">Apapun yang kamu alami, kamu pasti bisa lewatin! 💪</p>
+      <p id="pesan6" class="gaya2">Jangan terlalu keras sama dirimu sendiri.</p>
+      <p id="pesan7" class="gaya2">Pelan-pelan aja, semua ada waktunya. 🌈</p>
+      <p id="pesan8" class="gaya2">Aku bangga sama kamu. Terus semangat ya!</p>
+      <p id="pesan9" class="gaya2">Semua akan indah pada waktunya. 💖</p>
+      <p id="pesan10" class="gaya2">Kalau butuh teman cerita, kamu tahu harus hubungi siapa 🤫</p>
 
-<script>
-  const body = document.querySelector("body");const swalst = Swal.mixin({timer: 2300, allowOutsideClick: false, showConfirmButton: false, timerProgressBar: true, imageHeight: 90,}); audio = new Audio('' + linkmp3.src); ftganti=0;fungsi=0;fungsiAwal=0;deffotostiker=fotostiker.src;function berjatuhan() {const heart = document.createElement("div"); heart.className = "fas fa-snowflake"; heart.style.left = (Math.random() * 90)+"vw"; heart.style.animationDuration = (Math.random()*3)+2+"s"; body.appendChild(heart);} setInterval(function name(params) {var heartArr = document.querySelectorAll(".fa-snowflake"); if (heartArr.length > 100) {heartArr[0].remove()}},100);Content.style = "opacity:1;margin-top:16vh"; const swals = Swal.mixin({allowOutsideClick: false, cancelButtonColor: '#FF0040', imageHeight: 80,}); 
-  
-  var nomorWhatsApp = "082298180077"; var nama;
-  
-  document.getElementById("kadoIn").onclick = function() {if(fungsiAwal==0){audio.play();fungsiAwal=1;kadoIn.style="transition:all .8s ease;transform:scale(10);opacity:0";wallpaper.style="transform: scale(1.5);";ket.style="display:none";setTimeout(initengahan,300);setTimeout(inipesan,500)}}
-  
-  async function inipesan(){
-    var { value: nama2 } = await swals.fire({
-           title: 'Masukin Nama Kamu', input: 'text',
-       });
-       if(nama2 && nama2.length < 11){
-         window.nama = nama2;
-         vketikhalo="Hai, " + nama + " ✨";
-         mulainama();
-         } else {
-           await swals.fire('Ups!', 'Nama tidak boleh kosong atau lebih dari 10 karakter, ya!');inipesan();
-    }
-  }
-  
-  function mulainama() {
-    new TypeIt('#halo', {
-      strings: ["" + vketikhalo],
-      startDelay: 50,
-      cursor: false,
-      speed: 80,
-      waitUntilVisible: true,
-      afterComplete: function(){
-        halo.style="display:none";
-        swalst.fire({title:'' + vketikhalo, timer: 2000, imageUrl: '' + fotostiker.src,});
-        setTimeout(initlanjut, 2200);
-      },
-    }).go();
-  }
-  
-  function initlanjut() {
-    bq.style="opacity:1;visibility:visible;margin-top:0";
-    setTimeout(nextPesan, 1500);
-  }
-  
-  const otomp = new TypeIt("#kalimat", {
-    strings: ["" + kalimat.innerHTML],
-    speed: 50,
-    cursor: false,
-    deleteSpeed: 20,
-    breakLines: false,
-    waitUntilVisible: true,
-    lifeLike: true,
-    afterComplete: function() {
-      setTimeout(nextPesan, 500);
-    },
-  }).go();
-  
-  var pesanke = 1;
-  function nextPesan() {
-    if (pesanke == 1) {
-      kalimat.innerHTML = "";
-      otomp.strings(['' + pesan1.innerHTML]).go();
-      pesanke++;
-      document.getElementById("kolombaru").style="opacity:1;transform:scale(1)";
-      
-      var kol = 0;
-      var i = 1;
-      while(i <= 4) {
-        let lv = document.getElementById("lv" + i);
-        lv.onclick = function() {
-          lv.style="opacity:0";
-          kol++;
-          if (kol == 4) {
-            kol = 5;
-            nextPesan();
-          }
-        };
-        i++;
-      }
-    }
-    else if (pesanke == 2) {
-      kalimat.innerHTML = "";
-      otomp.strings(['' + pesan2.innerHTML]).go();
-      pesanke++;
-    }
-    else if (pesanke == 3) {
-      kalimat.innerHTML = "";
-      otomp.strings(['' + pesan3.innerHTML]).go();
-      pesanke++;
-    }
-    else if (pesanke == 4) {
-      kalimat.innerHTML = "";
-      otomp.strings(['' + pesan4.innerHTML, '' + pesan5.innerHTML]).go();
-      pesanke++;
-    }
-    else if (pesanke == 5) {
-      kalimat.innerHTML = "";
-      otomp.strings(['' + pesan6.innerHTML]).go();
-      pesanke++;
-    }
-    else if (pesanke == 6) {
-      kalimat.innerHTML = "";
-      otomp.strings(['' + pesan7.innerHTML]).go();
-      pesanke++;
-    }
-    else if (pesanke == 7) {
-      kalimat.innerHTML = "";
-      otomp.strings(['' + pesan8.innerHTML]).go();
-      pesanke++;
-    }
-    else if (pesanke == 8) {
-      kalimat.innerHTML = "";
-      otomp.strings(['' + pesan9.innerHTML]).go();
-      pesanke++;
-    }
-    else if (pesanke == 9) {
-      kalimat.innerHTML = "";
-      otomp.strings(['' + pesan10.innerHTML]).go();
-      pesanke++;
-      setTimeout(function() {
-        Tombol.style = "opacity:1;transform:scale(1)";
-        document.getElementById("By").onclick = function() {
-          swals.fire({
-            title: '' + tanya,
-            imageUrl: '' + fotostiker6.src,
-            showCancelButton: true,
-            confirmButtonText: '' + tompositif,
-            cancelButtonText: '' + tomnegatif
-          }).then((result) => {
-            if (result.isConfirmed) {
-              menuju();
-            } else {}
-          })
-        }
-      }, 1000);
-    }
-  }
-  
-  async function menuju(){pesanwhatsapp = "Makasii udah ngucapin " + nama + " ultah ><";await swals.fire('OK!', 'Kirim jawabannya ke WhatsApp aku, ya!', 'success');window.location = "https://api.whatsapp.com/send?phone=&text=" + pesanwhatsapp;}
-</script>
+      <p id="opsL">Klik untuk Lanjut</p>
+    </blockquote></div>
+
+    <div id="Tombol"><a id="By">&#128140; Lanjut</a></div>
+
+    <p id="katatambahan" class="sembunyi">Gajadi deh soalnya kamu cuek wkwk 😜</p>
+
+    <div id="pesanditolak">
+      <img id="stikerditolak" src="https://feeldreams.github.io/weee.gif"/>
+      <p id="kataditolak">Yaudah deh, semangat terus ya 😜</p>
+    </div>
+  </div>
+
+  <script>
+    const body = document.querySelector("body");
+    const audio = new Audio('' + linkmp3.src);
+    let fungsiAwal = 0;
+
+    document.getElementById("kadoIn").onclick = function() {
+      if (fungsiAwal == 0) {
+        audio.play();
+        fungsiAwal = 1;
+        kadoIn.style = "transition:all .8s ease;transform:scale(10);opacity:0";
+        wallpaper.style = "transform: scale(1.5);";
+        ket.style = "display:none";
+        setTimeout(initengahan,300);
+        setTimeout(inipesan,500);
+      }
+    }
+
+    async function inipesan(){
+      const { value: nama } = await Swal.fire({
+        title: 'Masukin Nama Kamu',
+        input: 'text',
+      });
+      if(nama && nama.length < 11){
+        window.nama = nama;
+        vketikhalo = "Hai, " + nama + " ✨";
+        mulainama();
+      } else {
+        await Swal.fire('Ups!', 'Nama tidak boleh kosong atau lebih dari 10 karakter, ya!');
+        inipesan();
+      }
+    }
+  </script>
+  <script src="https://malasid.github.io/html/hbd.js"></script>
 </body>
 </html>
