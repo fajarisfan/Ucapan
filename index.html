@@ -57,7 +57,8 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, .3);
+      /* Untuk membuat background lebih cerah, ubah nilai .3 menjadi .1 atau 0 */
+      background: rgba(0, 0, 0, .1); 
       z-index: -1
     }
     #Content {
@@ -82,11 +83,13 @@
       display: block;
       opacity: 0;
       transition: all .8s ease-in-out;
+      position: absolute; /* Tambahan ini untuk menghindari penumpukan */
     }
     #SuratIn {
       font-size: 15px;
       position: absolute;
       display: flex;
+      flex-direction: column; 
       align-items: center;
       justify-content: center;
       top: 0;
@@ -109,11 +112,9 @@
     }
     #ket {
       font-size: 14px;
-      position: absolute;
       color: #fff;
       text-align: center;
-      margin: 30px auto;
-      z-index: 99;
+      margin-top: 10px;
     }
     #halo {
       font-size: 18px;
@@ -236,8 +237,8 @@
   <div id="Content">
     <div id="SuratIn">
       <img src="https://feeldreams.github.io/envelope.png"/>
+      <p id="ket">Klik Suratnya!</p>
     </div>
-    <p id="ket">Klik Suratnya!</p>
     
     <p id="halo" class="halo"></p>
 
@@ -280,7 +281,7 @@
       fungsiAwal=1;
       SuratIn.style="transition:all .8s ease;transform:scale(10);opacity:0";
       wallpaper.style="transform: scale(1.5);";
-      ket.style="display:none";
+      document.getElementById("ket").style="display:none";
       setTimeout(initengahan,300);
       setTimeout(inipesan,500);
     }
@@ -366,13 +367,14 @@
     hideAllStickers();
     document.getElementById("kalimat").innerHTML = '';
     
-    const newSticker = document.createElement("img");
-    newSticker.src = getRandomStickerUrl();
-    newSticker.className = "stiker-pesan";
-    document.getElementById("bq").prepend(newSticker);
-    
-    // Langsung atur opacity menjadi 1 untuk mencegah stiker gelap
-    newSticker.style.opacity = '1';
+    // Stiker akan muncul untuk semua pesan kecuali yang interaktif
+    if (!messages[index].interactive) {
+        const newStiker = document.createElement("img");
+        newStiker.src = getRandomStickerUrl();
+        newStiker.className = "stiker-pesan";
+        document.getElementById("bq").prepend(newStiker);
+        newStiker.style.opacity = '1';
+    }
 
     if (messages[index].class) {
       document.getElementById("kalimat").className = messages[index].class;
