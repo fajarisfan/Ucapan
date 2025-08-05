@@ -68,25 +68,18 @@
       color: #fff;
       position: relative;
       display: flex;
+      flex-direction: column;
       align-items: center;
       text-align: center;
       justify-content: center;
-      transition: all 1s ease
+      transition: all 1s ease;
+      z-index: 100;
     }
-    .kumpulanstiker {
-      position: absolute;
-      display: flex;
-      width: 100%;
-      height: 100%;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      transition: all .8s ease-in-out;
-    }
-    .kumpulanstiker img {
+    .stiker-pesan {
       width: 130px;
       height: 130px;
-      margin: 20px;
+      margin: 20px auto;
+      display: block;
       opacity: 0;
       transition: all .8s ease-in-out;
     }
@@ -128,14 +121,16 @@
       text-shadow: 0 2px 2px #000;
       opacity: 0;
       transition: all .8s ease-in-out;
+      z-index: 98;
     }
     blockquote {
       position: relative;
-      margin-top: 100px;
-      margin-left: 0;
-      margin-right: 0;
+      width: 100%;
+      max-width: 500px;
+      margin: 20px 0;
       opacity: 0;
-      transition: all 1s ease
+      transition: all 1s ease;
+      z-index: 99;
     }
     blockquote p {
       font-size: 17px;
@@ -146,6 +141,7 @@
     }
     blockquote #kalimat {
       text-align: center;
+      min-height: 50px;
     }
     blockquote .gaya2 {
       font-family: var(--gaya-font-2);
@@ -159,19 +155,22 @@
       justify-content: center;
       align-items: center;
       width: 100%;
-      margin: 0 auto;
+      margin: 10px auto;
       opacity: 0;
-      transition: all .7s ease
+      transition: all .7s ease;
+      z-index: 101;
     }
     blockquote #kolombaru li {
       display: inline-block;
       list-style-type: none;
       margin: 5px;
       cursor: pointer;
+      z-index: 101;
     }
     blockquote #kolombaru li {
       font-size: 25px;
-      transition: all .3s ease
+      transition: all .3s ease;
+      z-index: 101;
     }
     blockquote #kolombaru li:hover {
       transform: scale(1.1);
@@ -187,8 +186,9 @@
     #Tombol {
       position: relative;
       opacity: 0;
-      margin: 100px 0 0 0;
-      transition: all .8s ease
+      margin-top: 50px;
+      transition: all .8s ease;
+      z-index: 102;
     }
     #Tombol a {
       text-shadow: 0 1px 1px #000;
@@ -238,33 +238,20 @@
       <img src="https://feeldreams.github.io/envelope.png"/>
     </div>
     <p id="ket">Klik Suratnya!</p>
-
-    <div class="kumpulanstiker">
-      <img src="https://feeldreams.github.io/bunga.gif" id="fotostiker"/>
-      <img src="https://feeldreams.github.io/pusn.gif" id="fotostiker1"/>
-      <img src="https://feeldreams.github.io/pandacoklat.gif" id="fotostiker2"/>
-      <img src="https://feeldreams.github.io/cilukba.gif" id="fotostiker3"/>
-      <img src="https://feeldreams.github.io/pandakuning.gif" id="fotostiker4"/>
-      <img src="https://feeldreams.github.io/emawh.gif" id="fotostiker5"/>
-    </div>
-
+    
     <p id="halo" class="halo"></p>
 
     <div><blockquote id='bq' data-text='㋡'>
       <p id="kalimat"></p>
-
       <div id="kolombaru">
         <li id="lv1">❤️</li>
         <li id="lv2">❤️</li>
         <li id="lv3">❤️</li>
         <li id="lv4">❤️</li>
       </div>
-
-      <p id="opsL" class="sembunyi">Klik untuk Lanjut</p>
     </blockquote></div>
 
     <div id="Tombol"><a id="By">💌 Lanjut</a></div>
-    
   </div>
 
 <script>
@@ -323,8 +310,8 @@
       speed: 80,
       waitUntilVisible: true,
       afterComplete: function(){
-        halo.style="opacity:1";
-        swalst.fire({title:'' + vketikhalo, timer: 2000, imageUrl: '' + fotostiker.src,});
+        halo.style="opacity:1; position: relative;";
+        swalst.fire({title:'' + vketikhalo, timer: 2000, imageUrl: 'https://feeldreams.github.io/bunga.gif',});
         setTimeout(initlanjut, 2200);
       },
     }).go();
@@ -335,41 +322,73 @@
   var tomnegatif = 'Engga';
 
   function initlanjut() {
+    halo.style="display: none";
     bq.style="opacity:1;visibility:visible;margin-top:0";
     document.getElementById("kalimat").style="display:block";
     showMessage(0);
   }
   
+  const stickers = ['https://feeldreams.github.io/bunga.gif', 'https://feeldreams.github.io/pusn.gif', 'https://feeldreams.github.io/pandacoklat.gif', 'https://feeldreams.github.io/cilukba.gif', 'https://feeldreams.github.io/pandakuning.gif', 'https://feeldreams.github.io/emawh.gif', 'https://feeldreams.github.io/smpr.gif', 'https://feeldreams.github.io/ywdh.gif'];
+  
   const messages = [
-    'Aku Ada Sesuatu Nih 🥺✨',
-    'Klik 4 LOVE di Bawah! 😄❤️',
-    'Sebentar ya...',
-    'Hey kamu, iya kamu 😄',
-    'Aku cuma mau bilang...',
-    'Apapun yang kamu alami, kamu pasti bisa lewatin! 💪',
-    'Jangan terlalu keras sama dirimu sendiri.',
-    'Pelan-pelan aja, semua ada waktunya. 🌈',
-    'Aku bangga sama kamu. Terus semangat ya!',
-    'Semua akan indah pada waktunya. 💖',
-    'Kalau butuh teman cerita, kamu tahu harus hubungi siapa 🤫'
+    { text: 'Aku Ada Sesuatu Nih 🥺✨' },
+    { text: 'Klik 4 LOVE di Bawah! 😄❤️', interactive: true },
+    { text: 'Sebentar ya...' },
+    { text: 'Hey kamu, iya kamu 😄' },
+    { text: 'Aku cuma mau bilang...' },
+    { text: 'Apapun yang kamu alami, kamu pasti bisa lewatin! 💪', class: 'gaya2' },
+    { text: 'Jangan terlalu keras sama dirimu sendiri.' },
+    { text: 'Pelan-pelan aja, semua ada waktunya. 🌈', class: 'gaya2' },
+    { text: 'Aku bangga sama kamu. Terus semangat ya!', class: 'gaya2' },
+    { text: 'Semua akan indah pada waktunya. 💖', class: 'gaya2' },
+    { text: 'Kalau butuh teman cerita, kamu tahu harus hubungi siapa 🤫', class: 'gaya2', end: true }
   ];
   var pesanke = -1;
   var typeitInstance;
+
+  function hideAllStickers() {
+    const allStickers = document.querySelectorAll('#bq .stiker-pesan');
+    allStickers.forEach(sticker => {
+      sticker.remove();
+    });
+  }
+  
+  function getRandomStickerUrl() {
+    const randomIndex = Math.floor(Math.random() * stickers.length);
+    return stickers[randomIndex];
+  }
   
   function showMessage(index) {
     if (typeitInstance) {
       typeitInstance.destroy();
     }
+    
+    hideAllStickers();
     document.getElementById("kalimat").innerHTML = '';
+    
+    const newSticker = document.createElement("img");
+    newSticker.src = getRandomStickerUrl();
+    newSticker.className = "stiker-pesan";
+    document.getElementById("bq").prepend(newSticker);
+    
+    // Langsung atur opacity menjadi 1 untuk mencegah stiker gelap
+    newSticker.style.opacity = '1';
+
+    if (messages[index].class) {
+      document.getElementById("kalimat").className = messages[index].class;
+    } else {
+      document.getElementById("kalimat").className = '';
+    }
+
     typeitInstance = new TypeIt("#kalimat", {
-      strings: [messages[index]],
+      strings: [messages[index].text],
       speed: 50,
       cursor: false,
       afterComplete: function() {
-        if (index === 1) {
+        if (messages[index].interactive) {
           document.getElementById("kolombaru").style = "opacity:1;transform:scale(1)";
-          activateHearts(); // Panggil fungsi untuk mengaktifkan hati
-        } else if (index === messages.length - 1) {
+          activateHearts();
+        } else if (messages[index].end) {
           setTimeout(showTombol, 1000);
         } else {
           setTimeout(nextPesan, 1500);
@@ -390,7 +409,7 @@
     for (let i = 1; i <= 4; i++) {
       let lv = document.getElementById("lv" + i);
       lv.onclick = function() {
-        lv.style = "opacity:0; transition: all .3s ease;";
+        lv.style = "opacity:0; transform:scale(0) rotate(180deg); transition: all .3s ease;";
         kol++;
         if (kol == 4) {
           kol = 5;
@@ -431,7 +450,7 @@
     setInterval(berjatuhan, 250);
     setTimeout(function() {
       wallpaper.style = "transform: scale(1);";
-      document.querySelector('.kumpulanstiker').style.opacity = 1;
+      document.getElementById("bq").style.opacity = '1';
     }, 2000);
   }
 </script>
