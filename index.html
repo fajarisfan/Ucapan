@@ -142,7 +142,7 @@
       font-weight: 700;
       line-height: 1.3em;
       transition: all .4s ease;
-      text-shadow: 0 1px 1px #000
+      text-shadow: 1px 1px 2px #000
     }
     blockquote #kalimat {
       text-align: center;
@@ -151,7 +151,7 @@
       font-family: var(--gaya-font-2);
       font-size: 20px;
       font-weight: 400;
-      text-shadow: 0 1px 1px #000
+      text-shadow: 1px 1px 2px #000
     }
     blockquote #kolombaru {
       display: flex;
@@ -166,7 +166,8 @@
     blockquote #kolombaru li {
       display: inline-block;
       list-style-type: none;
-      margin: 5px
+      margin: 5px;
+      cursor: pointer;
     }
     blockquote #kolombaru li {
       font-size: 25px;
@@ -174,7 +175,6 @@
     }
     blockquote #kolombaru li:hover {
       transform: scale(1.1);
-      cursor: pointer
     }
     #opsL {
       position: absolute;
@@ -198,7 +198,8 @@
       background: #6A3828;
       border-radius: 8px;
       padding: 10px 20px;
-      transition: all .3s ease
+      transition: all .3s ease;
+      text-decoration: none;
     }
     #Tombol a:hover {
       transform: scale(1.05)
@@ -367,6 +368,7 @@
       afterComplete: function() {
         if (index === 1) {
           document.getElementById("kolombaru").style = "opacity:1;transform:scale(1)";
+          activateHearts(); // Panggil fungsi untuk mengaktifkan hati
         } else if (index === messages.length - 1) {
           setTimeout(showTombol, 1000);
         } else {
@@ -382,21 +384,23 @@
       showMessage(pesanke);
     }
   }
-  
-  var kol = 0;
-  for (let i = 1; i <= 4; i++) {
-    let lv = document.getElementById("lv" + i);
-    lv.onclick = function() {
-      lv.style = "opacity:0; transition: all .3s ease;";
-      kol++;
-      if (kol == 4) {
-        kol = 5;
-        document.getElementById("kolombaru").style = "opacity:0; transform:scale(0)";
-        setTimeout(nextPesan, 500);
-      }
-    };
-  }
 
+  function activateHearts() {
+    var kol = 0;
+    for (let i = 1; i <= 4; i++) {
+      let lv = document.getElementById("lv" + i);
+      lv.onclick = function() {
+        lv.style = "opacity:0; transition: all .3s ease;";
+        kol++;
+        if (kol == 4) {
+          kol = 5;
+          document.getElementById("kolombaru").style = "opacity:0; transform:scale(0)";
+          setTimeout(nextPesan, 500);
+        }
+      };
+    }
+  }
+  
   function showTombol() {
     Tombol.style = "opacity:1;transform:scale(1)";
     document.getElementById("By").onclick = function() {
