@@ -8,7 +8,7 @@
   <link rel="icon" href="https://malasid.github.io/favicon.png">
   <meta name="description" content="Pesan semangat personal">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Antique:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
@@ -277,22 +277,50 @@
   </div>
 
 <script>
-  const body = document.querySelector("body");const swalst = Swal.mixin({timer: 2300, allowOutsideClick: false, showConfirmButton: false, timerProgressBar: true, imageHeight: 90,}); audio = new Audio('' + linkmp3.src); ftganti=0;fungsi=0;fungsiAwal=0;deffotostiker=fotostiker.src;function berjatuhan() {const heart = document.createElement("div"); heart.className = "fas fa-star"; heart.style.left = (Math.random() * 90)+"vw"; heart.style.animationDuration = (Math.random()*3)+2+"s"; body.appendChild(heart);} setInterval(function name(params) {var heartArr = document.querySelectorAll(".fa-star"); if (heartArr.length > 100) {heartArr[0].remove()}},100);Content.style = "opacity:1;margin-top:16vh"; const swals = Swal.mixin({allowOutsideClick: false, cancelButtonColor: '#FF0040', imageHeight: 80,});
- 
-  var nomorWhatsApp = "082298180077"; var nama;
+  const body = document.querySelector("body");
+  const swalst = Swal.mixin({timer: 2300, allowOutsideClick: false, showConfirmButton: false, timerProgressBar: true, imageHeight: 90,}); 
+  const audio = new Audio('' + linkmp3.src);
+  let fungsiAwal=0;
   
-  document.getElementById("SuratIn").onclick = function() {if(fungsiAwal==0){audio.play();fungsiAwal=1;SuratIn.style="transition:all .8s ease;transform:scale(10);opacity:0";wallpaper.style="transform: scale(1.5);";ket.style="display:none";setTimeout(initengahan,300);setTimeout(inipesan,500)}}
+  function berjatuhan() {
+    const heart = document.createElement("div");
+    heart.className = "fas fa-star";
+    heart.style.left = (Math.random() * 90)+"vw";
+    heart.style.animationDuration = (Math.random()*3)+2+"s";
+    body.appendChild(heart);
+  }
+  setInterval(function() {
+    var heartArr = document.querySelectorAll(".fa-star");
+    if (heartArr.length > 100) {
+      heartArr[0].remove()
+    }
+  },100);
+  
+  document.getElementById("SuratIn").onclick = function() {
+    if(fungsiAwal==0){
+      audio.play();
+      fungsiAwal=1;
+      SuratIn.style="transition:all .8s ease;transform:scale(10);opacity:0";
+      wallpaper.style="transform: scale(1.5);";
+      ket.style="display:none";
+      setTimeout(initengahan,300);
+      setTimeout(inipesan,500);
+    }
+  }
   
   async function inipesan(){
-    var { value: nama2 } = await swals.fire({
-           title: 'Masukin Nama Kamu', input: 'text',
-       });
-       if(nama2 && nama2.length < 11){
-         window.nama = nama2;
-         vketikhalo="Hai, " + nama + " ✨";
-         mulainama();
-         } else {
-           await swals.fire('Ups!', 'Nama tidak boleh kosong atau lebih dari 10 karakter, ya!');inipesan();
+    const swals = Swal.mixin({allowOutsideClick: false, cancelButtonColor: '#FF0040', imageHeight: 80,});
+    const { value: nama2 } = await swals.fire({
+        title: 'Masukin Nama Kamu',
+        input: 'text',
+    });
+    if(nama2 && nama2.length < 11){
+      window.nama = nama2;
+      vketikhalo="Hai, " + nama + " ✨";
+      mulainama();
+    } else {
+      await swals.fire('Ups!', 'Nama tidak boleh kosong atau lebih dari 10 karakter, ya!');
+      inipesan();
     }
   }
   
@@ -312,7 +340,6 @@
   }
  
   var tanya = 'Mau Balas Gak Nih? 😶❤️';
-  var opstanya = 'Ayo jawab 😆';
   var tompositif = 'Mau';
   var tomnegatif = 'Engga';
 
@@ -321,101 +348,103 @@
     setTimeout(nextPesan, 1500);
   }
   
-  const otomp = new TypeIt("#kalimat", {
-    strings: ["" + kalimat.innerHTML],
-    speed: 50,
-    cursor: false,
-    deleteSpeed: 20,
-    breakLines: false,
-    waitUntilVisible: true,
-    lifeLike: true,
-    afterComplete: function() {
-      setTimeout(nextPesan, 500);
-    },
-  }).go();
+  const messages = [
+    'Aku Ada Sesuatu Nih 🥺✨',
+    'Klik 4 LOVE di Bawah! 😄❤️',
+    'Sebentar ya...',
+    'Hey kamu, iya kamu 😄',
+    'Aku cuma mau bilang...',
+    'Apapun yang kamu alami, kamu pasti bisa lewatin! 💪',
+    'Jangan terlalu keras sama dirimu sendiri.',
+    'Pelan-pelan aja, semua ada waktunya. 🌈',
+    'Aku bangga sama kamu. Terus semangat ya!',
+    'Semua akan indah pada waktunya. 💖',
+    'Kalau butuh teman cerita, kamu tahu harus hubungi siapa 🤫'
+  ];
+  var pesanke = 0;
+  var typeitInstance;
   
-  var pesanke = 1;
-  function nextPesan() {
-    if (pesanke == 1) {
-      kalimat.innerHTML = "";
-      otomp.strings(['' + pesan1.innerHTML]).go();
-      pesanke++;
-      document.getElementById("kolombaru").style="opacity:1;transform:scale(1)";
-      
-      var kol = 0;
-      var i = 1;
-      while(i <= 4) {
-        let lv = document.getElementById("lv" + i);
-        lv.onclick = function() {
-          lv.style="opacity:0";
-          kol++;
-          if (kol == 4) {
-            kol = 5;
-            nextPesan();
-          }
-        };
-        i++;
-      }
+  function showMessage(index) {
+    if (typeitInstance) {
+      typeitInstance.destroy();
     }
-    else if (pesanke == 2) {
-      kalimat.innerHTML = "";
-      otomp.strings(['' + pesan2.innerHTML]).go();
-      pesanke++;
-    }
-    else if (pesanke == 3) {
-      kalimat.innerHTML = "";
-      otomp.strings(['' + pesan3.innerHTML]).go();
-      pesanke++;
-    }
-    else if (pesanke == 4) {
-      kalimat.innerHTML = "";
-      otomp.strings(['' + pesan4.innerHTML, '' + pesan5.innerHTML]).go();
-      pesanke++;
-    }
-    else if (pesanke == 5) {
-      kalimat.innerHTML = "";
-      otomp.strings(['' + pesan6.innerHTML]).go();
-      pesanke++;
-    }
-    else if (pesanke == 6) {
-      kalimat.innerHTML = "";
-      otomp.strings(['' + pesan7.innerHTML]).go();
-      pesanke++;
-    }
-    else if (pesanke == 7) {
-      kalimat.innerHTML = "";
-      otomp.strings(['' + pesan8.innerHTML]).go();
-      pesanke++;
-    }
-    else if (pesanke == 8) {
-      kalimat.innerHTML = "";
-      otomp.strings(['' + pesan9.innerHTML]).go();
-      pesanke++;
-    }
-    else if (pesanke == 9) {
-      kalimat.innerHTML = "";
-      otomp.strings(['' + pesan10.innerHTML]).go();
-      pesanke++;
-      setTimeout(function() {
-        Tombol.style = "opacity:1;transform:scale(1)";
-        document.getElementById("By").onclick = function() {
-          swals.fire({
-            title: '' + tanya,
-            imageUrl: '' + fotostiker6.src,
-            showCancelButton: true,
-            confirmButtonText: '' + tompositif,
-            cancelButtonText: '' + tomnegatif
-          }).then((result) => {
-            if (result.isConfirmed) {
-              menuju();
-            } else {}
-          })
+    typeitInstance = new TypeIt("#kalimat", {
+      strings: [messages[index]],
+      speed: 50,
+      cursor: false,
+      deleteSpeed: 20,
+      breakLines: false,
+      waitUntilVisible: true,
+      lifeLike: true,
+      afterComplete: function() {
+        if (index === 1) {
+          document.getElementById("kolombaru").style = "opacity:1;transform:scale(1)";
+        } else if (index === messages.length - 1) {
+          setTimeout(showTombol, 1000);
+        } else {
+          setTimeout(nextPesan, 1000);
         }
-      }, 1000);
+      },
+    }).go();
+  }
+  
+  function nextPesan() {
+    pesanke++;
+    if (pesanke === 1) {
+      showMessage(1);
+    } else if (pesanke < messages.length) {
+      showMessage(pesanke);
+    }
+  }
+
+  showMessage(0);
+  
+  var kol = 0;
+  for (let i = 1; i <= 4; i++) {
+    let lv = document.getElementById("lv" + i);
+    lv.onclick = function() {
+      lv.style = "opacity:0; transition: all .3s ease;";
+      kol++;
+      if (kol == 4) {
+        kol = 5;
+        document.getElementById("kolombaru").style = "opacity:0; transform:scale(0)";
+        setTimeout(nextPesan, 500);
+      }
+    };
+  }
+
+  function showTombol() {
+    Tombol.style = "opacity:1;transform:scale(1)";
+    document.getElementById("By").onclick = function() {
+      const swals = Swal.mixin({allowOutsideClick: false, cancelButtonColor: '#FF0040', imageHeight: 80,});
+      swals.fire({
+        title: '' + tanya,
+        imageUrl: 'https://feeldreams.github.io/pandacoklat.gif',
+        showCancelButton: true,
+        confirmButtonText: '' + tompositif,
+        cancelButtonText: '' + tomnegatif
+      }).then((result) => {
+        if (result.isConfirmed) {
+          menuju();
+        } else {}
+      })
     }
   }
   
-  async function menuju(){pesanwhatsapp = "Makasih banyak ya, quotes penyemangatnya sangat berarti buat aku! 💖";await swals.fire('OK!', 'Kirim balasan ke WhatsApp aku, ya!', 'success');window.location = "https://api.whatsapp.com/send?phone=" + nomorWhatsApp + "&text=" + pesanwhatsapp;}
+  var nomorWhatsApp = "082298180077";
+  async function menuju(){
+    pesanwhatsapp = "Makasih banyak ya, quotes penyemangatnya sangat berarti buat aku! 💖";
+    const swals = Swal.mixin({allowOutsideClick: false, cancelButtonColor: '#FF0040', imageHeight: 80,});
+    await swals.fire('OK!', 'Kirim balasan ke WhatsApp aku, ya!', 'success');
+    window.location = "https://api.whatsapp.com/send?phone=" + nomorWhatsApp + "&text=" + encodeURIComponent(pesanwhatsapp);
+  }
+
+  function initengahan() {
+    setTimeout(function() {
+      wallpaper.style = "transform: scale(1);";
+    }, 2000);
+  }
+
 </script>
 </body>
 </html>
