@@ -146,7 +146,6 @@
     }
     blockquote #kalimat {
       text-align: center;
-      display: none;
     }
     blockquote .gaya2 {
       font-family: var(--gaya-font-2);
@@ -425,8 +424,10 @@
   }
 
   function initengahan() {
+    setInterval(berjatuhan, 250);
     setTimeout(function() {
       wallpaper.style = "transform: scale(1);";
+      document.querySelector('.kumpulanstiker').style.opacity = 1;
     }, 2000);
   }
 </script>
