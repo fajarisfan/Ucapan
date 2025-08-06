@@ -57,7 +57,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, .1); 
+      background: rgba(0, 0, 0, .1);
       z-index: -1
     }
     #Content {
@@ -91,7 +91,7 @@
       font-size: 15px;
       position: absolute;
       display: flex;
-      flex-direction: column; 
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       top: 0;
@@ -130,7 +130,7 @@
       position: relative;
       width: 100%;
       max-width: 500px;
-      margin: 20px 0;
+      margin: 30px 0; /* Sedikit margin atas bawah untuk ruang stiker */
       opacity: 0;
       transition: all 1s ease;
       z-index: 99;
@@ -140,7 +140,7 @@
       font-weight: 700;
       line-height: 1.3em;
       transition: all .4s ease;
-      text-shadow: 1px 1px 2px #000
+      text-shadow: 1px 1px 2px #000 /* Efek shadow pada tulisan */
     }
     blockquote #kalimat {
       text-align: center;
@@ -150,7 +150,7 @@
       font-family: var(--gaya-font-2);
       font-size: 20px;
       font-weight: 400;
-      text-shadow: 1px 1px 2px #000
+      text-shadow: 1px 1px 2px #000 /* Efek shadow pada tulisan gaya2 */
     }
     blockquote #kolombaru {
       display: flex;
@@ -230,7 +230,7 @@
 </head>
 <body>
   <audio src="https://feeldreams.github.io/djikhlas.mp3" id="linkmp3" class="sembunyi"></audio>
-  
+
   <div id="bodyblur">
     <img src="1000297335.jpg" id="wallpaper"/>
     <div id="beneranblur"></div>
@@ -241,7 +241,7 @@
       <img src="envelope.gif"/>
       <p id="ket">Klik Suratnya!</p>
     </div>
-    
+
     <p id="halo" class="halo"></p>
 
     <div><blockquote id='bq' data-text='㋡'>
@@ -259,10 +259,10 @@
 
 <script>
   const body = document.querySelector("body");
-  const swalst = Swal.mixin({timer: 2300, allowOutsideClick: false, showConfirmButton: false, timerProgressBar: true, imageHeight: 90,}); 
+  const swalst = Swal.mixin({timer: 2300, allowOutsideClick: false, showConfirmButton: false, timerProgressBar: true, imageHeight: 90,});
   const audio = new Audio('https://feeldreams.github.io/djikhlas.mp3');
   let fungsiAwal=0;
-  
+
   function berjatuhan() {
     const heart = document.createElement("div");
     heart.className = "fas fa-star";
@@ -276,7 +276,7 @@
       heartArr[0].remove()
     }
   },100);
-  
+
   document.getElementById("SuratIn").onclick = function() {
     if(fungsiAwal==0){
       audio.play();
@@ -288,7 +288,7 @@
       setTimeout(inipesan,500);
     }
   }
-  
+
   async function inipesan(){
     const swals = Swal.mixin({allowOutsideClick: false, cancelButtonColor: '#FF0040', imageHeight: 80,});
     const { value: nama2 } = await swals.fire({
@@ -304,7 +304,7 @@
       inipesan();
     }
   }
-  
+
   function mulainama() {
     new TypeIt('#halo', {
       strings: ["" + vketikhalo],
@@ -319,7 +319,7 @@
       },
     }).go();
   }
- 
+
   var tanya = 'Mau Balas Gak Nih? 😶❤️';
   var tompositif = 'Mau';
   var tomnegatif = 'Engga';
@@ -330,7 +330,7 @@
     document.getElementById("kalimat").style="display:block";
     showMessage(0);
   }
-  
+
   const stickers = [
     'https://feeldreams.github.io/peach1.gif',
     'https://feeldreams.github.io/peach2.gif',
@@ -341,7 +341,7 @@
     'https://feeldreams.github.io/peach7.gif',
     'https://feeldreams.github.io/peach8.gif'
   ];
-  
+
   const messages = [
     { text: 'Aku Ada Sesuatu Nih 🥺✨' },
     { text: 'Klik 4 LOVE di Bawah! 😄❤️', interactive: true },
@@ -364,20 +364,20 @@
       sticker.remove();
     });
   }
-  
+
   function getRandomStickerUrl() {
     const randomIndex = Math.floor(Math.random() * stickers.length);
     return stickers[randomIndex];
   }
-  
+
   function showMessage(index) {
     if (typeitInstance) {
       typeitInstance.destroy();
     }
-    
+
     hideAllStickers();
     document.getElementById("kalimat").innerHTML = '';
-    
+
     if (!messages[index].interactive) {
         const newStiker = document.createElement("img");
         newStiker.src = getRandomStickerUrl();
@@ -408,7 +408,7 @@
       },
     }).go();
   }
-  
+
   function nextPesan() {
     pesanke++;
     if (pesanke < messages.length) {
@@ -431,7 +431,7 @@
       };
     }
   }
-  
+
   function showTombol() {
     Tombol.style = "opacity:1;transform:scale(1)";
     document.getElementById("By").onclick = function() {
@@ -449,7 +449,7 @@
       })
     }
   }
-  
+
   var nomorWhatsApp = "082298180077";
   async function menuju(){
     pesanwhatsapp = "Makasih banyak ya, quotes penyemangatnya sangat berarti buat aku! 💖";
