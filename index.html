@@ -76,13 +76,16 @@
       z-index: 100;
     }
     .stiker-pesan {
-      width: 130px;
-      height: 130px;
-      margin: 20px auto;
+      width: 150px; /* Ukuran stiker, bisa disesuaikan */
+      height: 150px; /* Ukuran stiker, bisa disesuaikan */
+      margin: 0 auto;
       display: block;
       opacity: 0;
       transition: all .8s ease-in-out;
       position: absolute;
+      top: 50%; /* Posisikan 50% dari atas */
+      left: 50%; /* Posisikan 50% dari kiri */
+      transform: translate(-50%, -50%); /* Geser stiker ke tengah */
     }
     #SuratIn {
       font-size: 15px;
@@ -328,7 +331,7 @@
     showMessage(0);
   }
   
-  const stickers = ['https://feeldreams.github.io/bunga.gif', 'https://feeldreams.github.io/pusn.gif', 'https://feeldreams.github.io/pandacoklat.gif', 'https://feeldreams.github.io/cilukba.gif', 'https://feeldreams.github.io/pandakuning.gif', 'https://feeldreams.github.io/emawh.gif', 'https://feeldreams.github.io/smpr.gif', 'https://feeldreams.github.io/ywdh.gif'];
+  const stickers = ['stiker1.gif', 'stiker2.gif', 'stiker3.gif', 'stiker4.gif', 'stiker5.gif', 'stiker6.gif', 'stiker7.gif', 'stiker8.gif', 'stiker9.gif'];
   
   const messages = [
     { text: 'Aku Ada Sesuatu Nih 🥺✨' },
