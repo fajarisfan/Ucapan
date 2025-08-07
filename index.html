@@ -1,470 +1,552 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset='UTF-8'/>
-  <meta content='width=device-width, initial-scale=1, maximum-scale=5' name='viewport'/>
-  <meta http-equiv='X-UA-Compatible' content='IE=edge'/>
-  <title>Penyemangat Spesial</title>
-  <link rel="icon" href="https://malasid.github.io/favicon.png">
-  <meta name="description" content="Pesan semangat personal">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Penyemangat Spesial</title>
+    <link rel="icon" href="https://malasid.github.io/favicon.png">
+    <meta name="description" content="Pesan semangat personal">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Shippori+Antique:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://kit.fontawesome.com/4f3ce16e3e.js" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Antique:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    
+    <!-- External Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://kit.fontawesome.com/4f3ce16e3e.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
 
-  <style>
-    :root {
-      --gaya-font-1: 'Shippori Antique', sans-serif;
-      --gaya-font-2: 'Dancing Script', cursive;
-    }
-    html {
-      transition: all .5s ease;
-      padding: 1px
-    }
-    body {
-      font-family: var(--gaya-font-1);
-      background-color: #101010;
-      color: #fff;
-      transition: all .3s ease;
-      overflow: hidden
-    }
-    .sembunyi {
-      display: none !important
-    }
-    #bodyblur {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: #101010;
-      z-index: -1;
-      transition: all 1s ease
-    }
-    #bodyblur img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: all 1s ease
-    }
-    #beneranblur {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, .1);
-      z-index: -1
-    }
-    #Content {
-      font-family: var(--gaya-font-1);
-      width: 90%;
-      height: 100%;
-      margin: 0 auto;
-      color: #fff;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      justify-content: center;
-      transition: all 1s ease;
-      z-index: 100;
-    }
-    .stiker-pesan {
-      width: 150px; /* Ukuran stiker, bisa disesuaikan */
-      height: 150px; /* Ukuran stiker, bisa disesuaikan */
-      margin: 0 auto;
-      display: block;
-      opacity: 0;
-      transition: all .8s ease-in-out;
-      position: absolute;
-      top: 50%; /* Posisikan 50% dari atas */
-      left: 50%; /* Posisikan 50% dari kiri */
-      transform: translate(-50%, -50%); /* Geser stiker ke tengah */
-    }
-    #SuratIn {
-      font-size: 15px;
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      text-align: center;
-      margin: 30px 20px;
-      transition: all 1s ease;
-      z-index: 99;
-      cursor: pointer;
-    }
-    #SuratIn img {
-      transition: all .6s ease;
-      width: 150px;
-      height: 150px
-    }
-    #SuratIn img:hover {
-      transform: scale(1.1)
-    }
-    #ket {
-      font-size: 14px;
-      color: #fff;
-      text-align: center;
-      margin-top: 10px;
-    }
-    #halo {
-      font-size: 18px;
-      position: absolute;
-      text-shadow: 0 2px 2px #000;
-      opacity: 0;
-      transition: all .8s ease-in-out;
-      z-index: 98;
-    }
-    blockquote {
-      position: relative;
-      width: 100%;
-      max-width: 500px;
-      margin: 30px 0; /* Sedikit margin atas bawah untuk ruang stiker */
-      opacity: 0;
-      transition: all 1s ease;
-      z-index: 99;
-    }
-    blockquote p {
-      font-size: 17px;
-      font-weight: 700;
-      line-height: 1.3em;
-      transition: all .4s ease;
-      text-shadow: 1px 1px 2px #000 /* Efek shadow pada tulisan */
-    }
-    blockquote #kalimat {
-      text-align: center;
-      min-height: 50px;
-    }
-    blockquote .gaya2 {
-      font-family: var(--gaya-font-2);
-      font-size: 20px;
-      font-weight: 400;
-      text-shadow: 1px 1px 2px #000 /* Efek shadow pada tulisan gaya2 */
-    }
-    blockquote #kolombaru {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      margin: 10px auto;
-      opacity: 0;
-      transition: all .7s ease;
-      z-index: 101;
-    }
-    blockquote #kolombaru li {
-      display: inline-block;
-      list-style-type: none;
-      margin: 5px;
-      cursor: pointer;
-      z-index: 101;
-    }
-    blockquote #kolombaru li {
-      font-size: 25px;
-      transition: all .3s ease;
-      z-index: 101;
-    }
-    blockquote #kolombaru li:hover {
-      transform: scale(1.1);
-    }
-    #opsL {
-      position: absolute;
-      margin-top: 50px;
-      font-size: 13px;
-      font-weight: 700;
-      opacity: 0;
-      transition: all .7s ease
-    }
-    #Tombol {
-      position: relative;
-      opacity: 0;
-      margin-top: 50px;
-      transition: all .8s ease;
-      z-index: 102;
-    }
-    #Tombol a {
-      text-shadow: 0 1px 1px #000;
-      font-size: 14px;
-      font-weight: 700;
-      color: #fff;
-      background: #6A3828;
-      border-radius: 8px;
-      padding: 10px 20px;
-      transition: all .3s ease;
-      text-decoration: none;
-    }
-    #Tombol a:hover {
-      transform: scale(1.05)
-    }
-    .fas.fa-star {
-      position: absolute;
-      z-index: 1000;
-      animation: star-fall 5s linear forwards;
-      font-size: 18px;
-      color: #FFD700;
-      opacity: 0;
-      pointer-events: none;
-    }
-    @keyframes star-fall {
-      0% {
-        transform: translateY(-100vh) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-  </style>
+    <style>
+        :root {
+            --gaya-font-1: 'Shippori Antique', sans-serif;
+            --gaya-font-2: 'Dancing Script', cursive;
+        }
+
+        html {
+            transition: all 0.5s ease;
+            padding: 1px;
+        }
+
+        body {
+            font-family: var(--gaya-font-1);
+            background-color: #101010;
+            color: #fff;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .sembunyi {
+            display: none !important;
+        }
+
+        #bodyblur {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #101010;
+            z-index: -1;
+            transition: all 1s ease;
+        }
+
+        #bodyblur img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 1s ease;
+        }
+
+        #beneranblur {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: -1;
+        }
+
+        #Content {
+            font-family: var(--gaya-font-1);
+            width: 90%;
+            height: 100%;
+            margin: 0 auto;
+            color: #fff;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            transition: all 1s ease;
+            z-index: 100;
+        }
+
+        .stiker-pesan {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            display: block;
+            opacity: 0;
+            transition: all 0.8s ease-in-out;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #SuratIn {
+            font-size: 15px;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            text-align: center;
+            margin: 30px 20px;
+            transition: all 1s ease;
+            z-index: 99;
+            cursor: pointer;
+        }
+
+        #SuratIn img {
+            transition: all 0.6s ease;
+            width: 150px;
+            height: 150px;
+        }
+
+        #SuratIn img:hover {
+            transform: scale(1.1);
+        }
+
+        #ket {
+            font-size: 14px;
+            color: #fff;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        #halo {
+            font-size: 18px;
+            position: absolute;
+            text-shadow: 0 2px 2px #000;
+            opacity: 0;
+            transition: all 0.8s ease-in-out;
+            z-index: 98;
+        }
+
+        blockquote {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 30px 0;
+            opacity: 0;
+            transition: all 1s ease;
+            z-index: 99;
+        }
+
+        blockquote p {
+            font-size: 17px;
+            font-weight: 700;
+            line-height: 1.3em;
+            transition: all 0.4s ease;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        blockquote #kalimat {
+            text-align: center;
+            min-height: 50px;
+        }
+
+        blockquote .gaya2 {
+            font-family: var(--gaya-font-2);
+            font-size: 20px;
+            font-weight: 400;
+            text-shadow: 1px 1px 2px #000;
+        }
+
+        blockquote #kolombaru {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 10px auto;
+            opacity: 0;
+            transition: all 0.7s ease;
+            z-index: 101;
+        }
+
+        blockquote #kolombaru li {
+            display: inline-block;
+            list-style-type: none;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 25px;
+            transition: all 0.3s ease;
+            z-index: 101;
+        }
+
+        blockquote #kolombaru li:hover {
+            transform: scale(1.1);
+        }
+
+        #opsL {
+            position: absolute;
+            margin-top: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            opacity: 0;
+            transition: all 0.7s ease;
+        }
+
+        #Tombol {
+            position: relative;
+            opacity: 0;
+            margin-top: 50px;
+            transition: all 0.8s ease;
+            z-index: 102;
+        }
+
+        #Tombol a {
+            text-shadow: 0 1px 1px #000;
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            background: #6A3828;
+            border-radius: 8px;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #Tombol a:hover {
+            transform: scale(1.05);
+        }
+
+        .fas.fa-star {
+            position: absolute;
+            z-index: 1000;
+            animation: star-fall 5s linear forwards;
+            font-size: 18px;
+            color: #FFD700;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes star-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-  <audio src="https://feeldreams.github.io/djikhlas.mp3" id="linkmp3" class="sembunyi"></audio>
+    <!-- Audio Element -->
+    <audio src="https://feeldreams.github.io/djikhlas.mp3" id="linkmp3" class="sembunyi"></audio>
 
-  <div id="bodyblur">
-    <img src="1000297335.jpg" id="wallpaper"/>
-    <div id="beneranblur"></div>
-  </div>
-
-  <div id="Content">
-    <div id="SuratIn">
-      <img src="envelope.gif"/>
-      <p id="ket">Klik Suratnya!</p>
+    <!-- Background -->
+    <div id="bodyblur">
+        <img src="1000297335.jpg" id="wallpaper" alt="Background">
+        <div id="beneranblur"></div>
     </div>
 
-    <p id="halo" class="halo"></p>
+    <!-- Main Content -->
+    <div id="Content">
+        <!-- Envelope Animation -->
+        <div id="SuratIn">
+            <img src="envelope.gif" alt="Envelope">
+            <p id="ket">Klik Suratnya!</p>
+        </div>
 
-    <div><blockquote id='bq' data-text='㋡'>
-      <p id="kalimat"></p>
-      <div id="kolombaru">
-        <li id="lv1">❤️</li>
-        <li id="lv2">❤️</li>
-        <li id="lv3">❤️</li>
-        <li id="lv4">❤️</li>
-      </div>
-    </blockquote></div>
+        <!-- Greeting -->
+        <p id="halo" class="halo"></p>
 
-    <div id="Tombol"><a id="By">💌 Lanjut</a></div>
-  </div>
+        <!-- Message Content -->
+        <div>
+            <blockquote id="bq" data-text="㋡">
+                <p id="kalimat"></p>
+                <div id="kolombaru">
+                    <li id="lv1">❤️</li>
+                    <li id="lv2">❤️</li>
+                    <li id="lv3">❤️</li>
+                    <li id="lv4">❤️</li>
+                </div>
+            </blockquote>
+        </div>
 
-<script>
-  const body = document.querySelector("body");
-  const swalst = Swal.mixin({timer: 2300, allowOutsideClick: false, showConfirmButton: false, timerProgressBar: true, imageHeight: 90,});
-  const audio = new Audio('https://feeldreams.github.io/djikhlas.mp3');
-  let fungsiAwal=0;
+        <!-- Action Button -->
+        <div id="Tombol">
+            <a id="By">💌 Lanjut</a>
+        </div>
+    </div>
 
-  function berjatuhan() {
-    const heart = document.createElement("div");
-    heart.className = "fas fa-star";
-    heart.style.left = (Math.random() * 90)+"vw";
-    heart.style.animationDuration = (Math.random()*3)+2+"s";
-    body.appendChild(heart);
-  }
-  setInterval(function() {
-    var heartArr = document.querySelectorAll(".fa-star");
-    if (heartArr.length > 100) {
-      heartArr[0].remove()
-    }
-  },100);
+    <script>
+        // DOM Elements and Initial Setup
+        const body = document.querySelector("body");
+        const swalst = Swal.mixin({
+            timer: 2300,
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            timerProgressBar: true,
+            imageHeight: 90,
+        });
+        const audio = new Audio('https://feeldreams.github.io/djikhlas.mp3');
+        let fungsiAwal = 0;
 
-  document.getElementById("SuratIn").onclick = function() {
-    if(fungsiAwal==0){
-      audio.play();
-      fungsiAwal=1;
-      SuratIn.style="transition:all .8s ease;transform:scale(10);opacity:0";
-      wallpaper.style="transform: scale(1.5);";
-      document.getElementById("ket").style="display:none";
-      setTimeout(initengahan,300);
-      setTimeout(inipesan,500);
-    }
-  }
-
-  async function inipesan(){
-    const swals = Swal.mixin({allowOutsideClick: false, cancelButtonColor: '#FF0040', imageHeight: 80,});
-    const { value: nama2 } = await swals.fire({
-        title: 'Masukin Nama Kamu',
-        input: 'text',
-    });
-    if(nama2 && nama2.length < 11){
-      window.nama = nama2;
-      vketikhalo="Hai, " + nama + " ✨";
-      mulainama();
-    } else {
-      await swals.fire('Ups!', 'Nama tidak boleh kosong atau lebih dari 10 karakter, ya!');
-      inipesan();
-    }
-  }
-
-  function mulainama() {
-    new TypeIt('#halo', {
-      strings: ["" + vketikhalo],
-      startDelay: 50,
-      cursor: false,
-      speed: 80,
-      waitUntilVisible: true,
-      afterComplete: function(){
-        halo.style="opacity:1; position: relative;";
-        swalst.fire({title:'' + vketikhalo, timer: 2000, imageUrl: 'https://feeldreams.github.io/bunga.gif',});
-        setTimeout(initlanjut, 2200);
-      },
-    }).go();
-  }
-
-  var tanya = 'Mau Balas Gak Nih? 😶❤️';
-  var tompositif = 'Mau';
-  var tomnegatif = 'Engga';
-
-  function initlanjut() {
-    halo.style="display: none";
-    bq.style="opacity:1;visibility:visible;margin-top:0";
-    document.getElementById("kalimat").style="display:block";
-    showMessage(0);
-  }
-
-  const stickers = [
-    'https://feeldreams.github.io/peach1.gif',
-    'https://feeldreams.github.io/peach2.gif',
-    'https://feeldreams.github.io/peach3.gif',
-    'https://feeldreams.github.io/peach4.gif',
-    'https://feeldreams.github.io/peach5.gif',
-    'https://feeldreams.github.io/peach6.gif',
-    'https://feeldreams.github.io/peach7.gif',
-    'https://feeldreams.github.io/peach8.gif'
-  ];
-
-  const messages = [
-    { text: 'Aku Ada Sesuatu Nih 🥺✨' },
-    { text: 'Klik 4 LOVE di Bawah! 😄❤️', interactive: true },
-    { text: 'Sebentar ya...' },
-    { text: 'Hey kamu, iya kamu 😄' },
-    { text: 'Aku cuma mau bilang...' },
-    { text: 'Apapun yang kamu alami, kamu pasti bisa lewatin! 💪', class: 'gaya2' },
-    { text: 'Jangan terlalu keras sama dirimu sendiri.' },
-    { text: 'Pelan-pelan aja, semua ada waktunya. 🌈', class: 'gaya2' },
-    { text: 'Aku bangga sama kamu. Terus semangat ya!', class: 'gaya2' },
-    { text: 'Semua akan indah pada waktunya. 💖', class: 'gaya2' },
-    { text: 'Kalau butuh teman cerita, kamu tahu harus hubungi siapa 🤫', class: 'gaya2', end: true }
-  ];
-  var pesanke = -1;
-  var typeitInstance;
-
-  function hideAllStickers() {
-    const allStickers = document.querySelectorAll('#bq .stiker-pesan');
-    allStickers.forEach(sticker => {
-      sticker.remove();
-    });
-  }
-
-  function getRandomStickerUrl() {
-    const randomIndex = Math.floor(Math.random() * stickers.length);
-    return stickers[randomIndex];
-  }
-
-  function showMessage(index) {
-    if (typeitInstance) {
-      typeitInstance.destroy();
-    }
-
-    hideAllStickers();
-    document.getElementById("kalimat").innerHTML = '';
-
-    if (!messages[index].interactive) {
-        const newStiker = document.createElement("img");
-        newStiker.src = getRandomStickerUrl();
-        newStiker.className = "stiker-pesan";
-        document.getElementById("bq").prepend(newStiker);
-        newStiker.style.opacity = '1';
-    }
-
-    if (messages[index].class) {
-      document.getElementById("kalimat").className = messages[index].class;
-    } else {
-      document.getElementById("kalimat").className = '';
-    }
-
-    typeitInstance = new TypeIt("#kalimat", {
-      strings: [messages[index].text],
-      speed: 50,
-      cursor: false,
-      afterComplete: function() {
-        if (messages[index].interactive) {
-          document.getElementById("kolombaru").style = "opacity:1;transform:scale(1)";
-          activateHearts();
-        } else if (messages[index].end) {
-          setTimeout(showTombol, 1000);
-        } else {
-          setTimeout(nextPesan, 1500);
+        // Falling Stars Animation
+        function berjatuhan() {
+            const heart = document.createElement("div");
+            heart.className = "fas fa-star";
+            heart.style.left = (Math.random() * 90) + "vw";
+            heart.style.animationDuration = (Math.random() * 3) + 2 + "s";
+            body.appendChild(heart);
         }
-      },
-    }).go();
-  }
 
-  function nextPesan() {
-    pesanke++;
-    if (pesanke < messages.length) {
-      showMessage(pesanke);
-    }
-  }
+        // Clean up excess stars
+        setInterval(function() {
+            var heartArr = document.querySelectorAll(".fa-star");
+            if (heartArr.length > 100) {
+                heartArr[0].remove();
+            }
+        }, 100);
 
-  function activateHearts() {
-    var kol = 0;
-    for (let i = 1; i <= 4; i++) {
-      let lv = document.getElementById("lv" + i);
-      lv.onclick = function() {
-        lv.style = "opacity:0; transform:scale(0) rotate(180deg); transition: all .3s ease;";
-        kol++;
-        if (kol == 4) {
-          kol = 5;
-          document.getElementById("kolombaru").style = "opacity:0; transform:scale(0)";
-          setTimeout(nextPesan, 500);
+        // Envelope Click Handler
+        document.getElementById("SuratIn").onclick = function() {
+            if (fungsiAwal == 0) {
+                audio.play();
+                fungsiAwal = 1;
+                document.getElementById("SuratIn").style = "transition:all 0.8s ease;transform:scale(10);opacity:0";
+                document.getElementById("wallpaper").style = "transform: scale(1.5);";
+                document.getElementById("ket").style = "display:none";
+                setTimeout(initengahan, 300);
+                setTimeout(inipesan, 500);
+            }
         }
-      };
-    }
-  }
 
-  function showTombol() {
-    Tombol.style = "opacity:1;transform:scale(1)";
-    document.getElementById("By").onclick = function() {
-      const swals = Swal.mixin({allowOutsideClick: false, cancelButtonColor: '#FF0040', imageHeight: 80,});
-      swals.fire({
-        title: '' + tanya,
-        imageUrl: 'https://feeldreams.github.io/pandacoklat.gif',
-        showCancelButton: true,
-        confirmButtonText: '' + tompositif,
-        cancelButtonText: '' + tomnegatif
-      }).then((result) => {
-        if (result.isConfirmed) {
-          menuju();
+        // Name Input Function
+        async function inipesan() {
+            const swals = Swal.mixin({
+                allowOutsideClick: false,
+                cancelButtonColor: '#FF0040',
+                imageHeight: 80,
+            });
+            const { value: nama2 } = await swals.fire({
+                title: 'Masukin Nama Kamu',
+                input: 'text',
+            });
+            if (nama2 && nama2.length < 11) {
+                window.nama = nama2;
+                window.vketikhalo = "Hai, " + nama + " ✨";
+                mulainama();
+            } else {
+                await swals.fire('Ups!', 'Nama tidak boleh kosong atau lebih dari 10 karakter, ya!');
+                inipesan();
+            }
         }
-      })
-    }
-  }
 
-  var nomorWhatsApp = "082298180077";
-  async function menuju(){
-    pesanwhatsapp = "Makasih banyak ya, quotes penyemangatnya sangat berarti buat aku! 💖";
-    const swals = Swal.mixin({allowOutsideClick: false, cancelButtonColor: '#FF0040', imageHeight: 80,});
-    await swals.fire('OK!', 'Kirim balasan ke WhatsApp aku, ya!', 'success');
-    window.location = "https://api.whatsapp.com/send?phone=" + nomorWhatsApp + "&text=" + encodeURIComponent(pesanwhatsapp);
-  }
+        // Start Name Animation
+        function mulainama() {
+            new TypeIt('#halo', {
+                strings: ["" + window.vketikhalo],
+                startDelay: 50,
+                cursor: false,
+                speed: 80,
+                waitUntilVisible: true,
+                afterComplete: function() {
+                    document.getElementById("halo").style = "opacity:1; position: relative;";
+                    swalst.fire({
+                        title: '' + window.vketikhalo,
+                        timer: 2000,
+                        imageUrl: 'https://feeldreams.github.io/bunga.gif',
+                    });
+                    setTimeout(initlanjut, 2200);
+                },
+            }).go();
+        }
 
-  function initengahan() {
-    setInterval(berjatuhan, 250);
-    setTimeout(function() {
-      wallpaper.style = "transform: scale(1);";
-      document.getElementById("bq").style.opacity = '1';
-    }, 2000);
-  }
-</script>
+        // WhatsApp Variables
+        var tanya = 'Mau Balas Gak Nih? 😶❤️';
+        var tompositif = 'Mau';
+        var tomnegatif = 'Engga';
+
+        // Continue to Main Messages
+        function initlanjut() {
+            document.getElementById("halo").style = "display: none";
+            document.getElementById("bq").style = "opacity:1;visibility:visible;margin-top:0";
+            document.getElementById("kalimat").style = "display:block";
+            showMessage(0);
+        }
+
+        // Sticker URLs Array
+        const stickers = [
+            'https://feeldreams.github.io/peach1.gif',
+            'https://feeldreams.github.io/peach2.gif',
+            'https://feeldreams.github.io/peach3.gif',
+            'https://feeldreams.github.io/peach4.gif',
+            'https://feeldreams.github.io/peach5.gif',
+            'https://feeldreams.github.io/peach6.gif',
+            'https://feeldreams.github.io/peach7.gif',
+            'https://feeldreams.github.io/peach8.gif'
+        ];
+
+        // Messages Array
+        const messages = [
+            { text: 'Aku Ada Sesuatu Nih 🥺✨' },
+            { text: 'Klik 4 LOVE di Bawah! 😄❤️', interactive: true },
+            { text: 'Sebentar ya...' },
+            { text: 'Hey kamu, iya kamu 😄' },
+            { text: 'Aku cuma mau bilang...' },
+            { text: 'Apapun yang kamu alami, kamu pasti bisa lewatin! 💪', class: 'gaya2' },
+            { text: 'Jangan terlalu keras sama dirimu sendiri.' },
+            { text: 'Pelan-pelan aja, semua ada waktunya. 🌈', class: 'gaya2' },
+            { text: 'Aku bangga sama kamu. Terus semangat ya!', class: 'gaya2' },
+            { text: 'Semua akan indah pada waktunya. 💖', class: 'gaya2' },
+            { text: 'Kalau butuh teman cerita, kamu tahu harus hubungi siapa 🤫', class: 'gaya2', end: true }
+        ];
+
+        var pesanke = -1;
+        var typeitInstance;
+
+        // Helper Functions
+        function hideAllStickers() {
+            const allStickers = document.querySelectorAll('#bq .stiker-pesan');
+            allStickers.forEach(sticker => {
+                sticker.remove();
+            });
+        }
+
+        function getRandomStickerUrl() {
+            const randomIndex = Math.floor(Math.random() * stickers.length);
+            return stickers[randomIndex];
+        }
+
+        // Main Message Display Function
+        function showMessage(index) {
+            if (typeitInstance) {
+                typeitInstance.destroy();
+            }
+
+            hideAllStickers();
+            document.getElementById("kalimat").innerHTML = '';
+
+            // Add sticker for non-interactive messages
+            if (!messages[index].interactive) {
+                const newStiker = document.createElement("img");
+                newStiker.src = getRandomStickerUrl();
+                newStiker.className = "stiker-pesan";
+                document.getElementById("bq").prepend(newStiker);
+                newStiker.style.opacity = '1';
+            }
+
+            // Apply CSS class if specified
+            if (messages[index].class) {
+                document.getElementById("kalimat").className = messages[index].class;
+            } else {
+                document.getElementById("kalimat").className = '';
+            }
+
+            // TypeIt animation
+            typeitInstance = new TypeIt("#kalimat", {
+                strings: [messages[index].text],
+                speed: 50,
+                cursor: false,
+                afterComplete: function() {
+                    if (messages[index].interactive) {
+                        document.getElementById("kolombaru").style = "opacity:1;transform:scale(1)";
+                        activateHearts();
+                    } else if (messages[index].end) {
+                        setTimeout(showTombol, 1000);
+                    } else {
+                        setTimeout(nextPesan, 1500);
+                    }
+                },
+            }).go();
+        }
+
+        // Next Message Function
+        function nextPesan() {
+            pesanke++;
+            if (pesanke < messages.length) {
+                showMessage(pesanke);
+            }
+        }
+
+        // Heart Interaction Function
+        function activateHearts() {
+            var kol = 0;
+            for (let i = 1; i <= 4; i++) {
+                let lv = document.getElementById("lv" + i);
+                lv.onclick = function() {
+                    lv.style = "opacity:0; transform:scale(0) rotate(180deg); transition: all 0.3s ease;";
+                    kol++;
+                    if (kol == 4) {
+                        kol = 5;
+                        document.getElementById("kolombaru").style = "opacity:0; transform:scale(0)";
+                        setTimeout(nextPesan, 500);
+                    }
+                };
+            }
+        }
+
+        // Show Final Button
+        function showTombol() {
+            document.getElementById("Tombol").style = "opacity:1;transform:scale(1)";
+            document.getElementById("By").onclick = function() {
+                const swals = Swal.mixin({
+                    allowOutsideClick: false,
+                    cancelButtonColor: '#FF0040',
+                    imageHeight: 80,
+                });
+                swals.fire({
+                    title: '' + tanya,
+                    imageUrl: 'https://feeldreams.github.io/pandacoklat.gif',
+                    showCancelButton: true,
+                    confirmButtonText: '' + tompositif,
+                    cancelButtonText: '' + tomnegatif
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        menuju();
+                    }
+                });
+            };
+        }
+
+        // WhatsApp Redirect
+        var nomorWhatsApp = "082298180077";
+        async function menuju() {
+            const pesanwhatsapp = "Makasih banyak ya, quotes penyemangatnya sangat berarti buat aku! 💖";
+            const swals = Swal.mixin({
+                allowOutsideClick: false,
+                cancelButtonColor: '#FF0040',
+                imageHeight: 80,
+            });
+            await swals.fire('OK!', 'Kirim balasan ke WhatsApp aku, ya!', 'success');
+            window.location = "https://api.whatsapp.com/send?phone=" + nomorWhatsApp + "&text=" + encodeURIComponent(pesanwhatsapp);
+        }
+
+        // Initialize Background Effects
+        function initengahan() {
+            setInterval(berjatuhan, 250);
+            setTimeout(function() {
+                document.getElementById("wallpaper").style = "transform: scale(1);";
+                document.getElementById("bq").style.opacity = '1';
+            }, 2000);
+        }
+    </script>
 </body>
 </html>
