@@ -86,17 +86,16 @@
             z-index: 100;
         }
 
+        /* PERBAIKAN UTAMA: Stiker tidak lagi overlap */
         .stiker-pesan {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto;
+            width: 120px;
+            height: 120px;
+            margin: 15px auto;
             display: block;
             opacity: 0;
             transition: all 0.8s ease-in-out;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            position: relative; /* Ubah dari absolute ke relative */
+            z-index: 103;
         }
 
         #SuratIn {
@@ -113,7 +112,7 @@
             text-align: center;
             margin: 30px 20px;
             transition: all 1s ease;
-            z-index: 99;
+            z-index: 101;
             cursor: pointer;
         }
 
@@ -136,21 +135,27 @@
 
         #halo {
             font-size: 18px;
-            position: absolute;
+            position: relative; /* Ubah dari absolute */
             text-shadow: 0 2px 2px #000;
             opacity: 0;
             transition: all 0.8s ease-in-out;
-            z-index: 98;
+            z-index: 102;
+            margin-bottom: 20px;
         }
 
+        /* PERBAIKAN UTAMA: Layout blockquote yang lebih terstruktur */
         blockquote {
             position: relative;
             width: 100%;
             max-width: 500px;
-            margin: 30px 0;
+            margin: 20px auto;
             opacity: 0;
             transition: all 1s ease;
-            z-index: 99;
+            z-index: 102;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px; /* Tambahkan gap untuk spacing */
         }
 
         blockquote p {
@@ -159,11 +164,13 @@
             line-height: 1.3em;
             transition: all 0.4s ease;
             text-shadow: 1px 1px 2px #000;
+            margin: 0; /* Reset margin default */
         }
 
         blockquote #kalimat {
             text-align: center;
             min-height: 50px;
+            order: 2; /* Pastikan teks di bawah stiker */
         }
 
         blockquote .gaya2 {
@@ -173,26 +180,36 @@
             text-shadow: 1px 1px 2px #000;
         }
 
+        /* PERBAIKAN: Container untuk stiker */
+        .stiker-container {
+            order: 1; /* Pastikan stiker di atas teks */
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
         blockquote #kolombaru {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
             width: 100%;
-            margin: 10px auto;
+            margin: 20px auto 0;
             opacity: 0;
             transition: all 0.7s ease;
-            z-index: 101;
+            z-index: 104;
+            order: 3; /* Hearts di bawah teks */
         }
 
         blockquote #kolombaru li {
             display: inline-block;
             list-style-type: none;
-            margin: 5px;
+            margin: 8px;
             cursor: pointer;
             font-size: 25px;
             transition: all 0.3s ease;
-            z-index: 101;
+            z-index: 104;
         }
 
         blockquote #kolombaru li:hover {
@@ -211,9 +228,9 @@
         #Tombol {
             position: relative;
             opacity: 0;
-            margin-top: 50px;
+            margin-top: 30px;
             transition: all 0.8s ease;
-            z-index: 102;
+            z-index: 105;
         }
 
         #Tombol a {
@@ -253,6 +270,53 @@
                 opacity: 0;
             }
         }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .stiker-pesan {
+                width: 100px;
+                height: 100px;
+                margin: 10px auto;
+            }
+            
+            blockquote {
+                margin: 15px 10px;
+                max-width: 90%;
+                gap: 15px;
+            }
+            
+            blockquote p {
+                font-size: 15px;
+            }
+            
+            blockquote .gaya2 {
+                font-size: 18px;
+            }
+            
+            #Content {
+                width: 95%;
+            }
+            
+            blockquote #kolombaru li {
+                margin: 6px;
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stiker-pesan {
+                width: 80px;
+                height: 80px;
+            }
+            
+            blockquote p {
+                font-size: 14px;
+            }
+            
+            blockquote .gaya2 {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -278,7 +342,8 @@
 
         <!-- Message Content -->
         <div>
-            <blockquote id="bq" data-text="㋡">
+            <blockquote id="bq" data-text="„ã°">
+                <div class="stiker-container" id="stikerContainer"></div>
                 <p id="kalimat"></p>
                 <div id="kolombaru">
                     <li id="lv1">❤️</li>
@@ -291,7 +356,7 @@
 
         <!-- Action Button -->
         <div id="Tombol">
-            <a id="By">💌 Lanjut</a>
+            <a id="By">🎁 Lanjut</a>
         </div>
     </div>
 
@@ -351,7 +416,7 @@
             });
             if (nama2 && nama2.length < 11) {
                 window.nama = nama2;
-                window.vketikhalo = "Hai, " + nama + " ✨";
+                window.vketikhalo = "Hai, " + nama + " 😊";
                 mulainama();
             } else {
                 await swals.fire('Ups!', 'Nama tidak boleh kosong atau lebih dari 10 karakter, ya!');
@@ -368,7 +433,7 @@
                 speed: 80,
                 waitUntilVisible: true,
                 afterComplete: function() {
-                    document.getElementById("halo").style = "opacity:1; position: relative;";
+                    document.getElementById("halo").style = "opacity:1;";
                     swalst.fire({
                         title: '' + window.vketikhalo,
                         timer: 2000,
@@ -380,7 +445,7 @@
         }
 
         // WhatsApp Variables
-        var tanya = 'Mau Balas Gak Nih? 😶❤️';
+        var tanya = 'Mau Balas Gak Nih? 🥺❤️';
         var tompositif = 'Mau';
         var tomnegatif = 'Engga';
 
@@ -406,17 +471,17 @@
 
         // Messages Array
         const messages = [
-            { text: 'Aku Ada Sesuatu Nih 🥺✨' },
-            { text: 'Klik 4 LOVE di Bawah! 😄❤️', interactive: true },
+            { text: 'Aku Ada Sesuatu Nih 🤗😊' },
+            { text: 'Klik 4 LOVE di Bawah! 🥰❤️', interactive: true },
             { text: 'Sebentar ya...' },
-            { text: 'Hey kamu, iya kamu 😄' },
+            { text: 'Hey kamu, iya kamu 🥰' },
             { text: 'Aku cuma mau bilang...' },
             { text: 'Apapun yang kamu alami, kamu pasti bisa lewatin! 💪', class: 'gaya2' },
             { text: 'Jangan terlalu keras sama dirimu sendiri.' },
-            { text: 'Pelan-pelan aja, semua ada waktunya. 🌈', class: 'gaya2' },
+            { text: 'Pelan-pelan aja, semua ada waktunya. 🌸', class: 'gaya2' },
             { text: 'Aku bangga sama kamu. Terus semangat ya!', class: 'gaya2' },
-            { text: 'Semua akan indah pada waktunya. 💖', class: 'gaya2' },
-            { text: 'Kalau butuh teman cerita, kamu tahu harus hubungi siapa 🤫', class: 'gaya2', end: true }
+            { text: 'Semua akan indah pada waktunya. 🌟', class: 'gaya2' },
+            { text: 'Kalau butuh teman cerita, kamu tahu harus hubungi siapa 😉', class: 'gaya2', end: true }
         ];
 
         var pesanke = -1;
@@ -424,10 +489,8 @@
 
         // Helper Functions
         function hideAllStickers() {
-            const allStickers = document.querySelectorAll('#bq .stiker-pesan');
-            allStickers.forEach(sticker => {
-                sticker.remove();
-            });
+            const stikerContainer = document.getElementById('stikerContainer');
+            stikerContainer.innerHTML = '';
         }
 
         function getRandomStickerUrl() {
@@ -435,7 +498,7 @@
             return stickers[randomIndex];
         }
 
-        // Main Message Display Function
+        // PERBAIKAN UTAMA: Function untuk menampilkan pesan
         function showMessage(index) {
             if (typeitInstance) {
                 typeitInstance.destroy();
@@ -444,13 +507,18 @@
             hideAllStickers();
             document.getElementById("kalimat").innerHTML = '';
 
-            // Add sticker for non-interactive messages
+            // Add sticker for non-interactive messages dengan container terpisah
             if (!messages[index].interactive) {
+                const stikerContainer = document.getElementById('stikerContainer');
                 const newStiker = document.createElement("img");
                 newStiker.src = getRandomStickerUrl();
                 newStiker.className = "stiker-pesan";
-                document.getElementById("bq").prepend(newStiker);
-                newStiker.style.opacity = '1';
+                stikerContainer.appendChild(newStiker);
+                
+                // Animate sticker appearance
+                setTimeout(() => {
+                    newStiker.style.opacity = '1';
+                }, 100);
             }
 
             // Apply CSS class if specified
@@ -529,7 +597,7 @@
         // WhatsApp Redirect
         var nomorWhatsApp = "082298180077";
         async function menuju() {
-            const pesanwhatsapp = "Makasih banyak ya, quotes penyemangatnya sangat berarti buat aku! 💖";
+            const pesanwhatsapp = "Makasih banyak ya, quotes penyemangatnya sangat berarti buat aku! 🌟";
             const swals = Swal.mixin({
                 allowOutsideClick: false,
                 cancelButtonColor: '#FF0040',
