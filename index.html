@@ -86,7 +86,7 @@
             z-index: 100;
         }
 
-        /* PERBAIKAN UTAMA: Stiker tidak lagi overlap */
+        /* SOLUSI UTAMA: Stiker dengan background transparan */
         .stiker-pesan {
             width: 120px;
             height: 120px;
@@ -96,7 +96,31 @@
             transition: all 0.8s ease-in-out;
             position: relative;
             z-index: 103;
-            border-radius: 10px;
+            border-radius: 15px;
+            
+            /* Hilangkan background putih */
+            background: transparent;
+            mix-blend-mode: screen; /* Menghilangkan background putih */
+            filter: 
+                drop-shadow(0 4px 12px rgba(255,255,255,0.15))
+                contrast(1.1) 
+                brightness(1.05)
+                saturate(1.1);
+            
+            /* Efek glow untuk stiker */
+            box-shadow: 
+                0 0 20px rgba(255,255,255,0.1),
+                inset 0 0 20px rgba(255,255,255,0.05);
+        }
+
+        /* Hover effect untuk stiker */
+        .stiker-pesan:hover {
+            transform: scale(1.05) rotate(2deg);
+            filter: 
+                drop-shadow(0 6px 16px rgba(255,255,255,0.2))
+                contrast(1.15) 
+                brightness(1.1)
+                saturate(1.2);
         }
 
         #SuratIn {
@@ -144,7 +168,6 @@
             margin-bottom: 20px;
         }
 
-        /* PERBAIKAN UTAMA: Layout blockquote yang lebih terstruktur */
         blockquote {
             position: relative;
             width: 100%;
@@ -214,15 +237,6 @@
 
         blockquote #kolombaru li:hover {
             transform: scale(1.1);
-        }
-
-        #opsL {
-            position: absolute;
-            margin-top: 50px;
-            font-size: 13px;
-            font-weight: 700;
-            opacity: 0;
-            transition: all 0.7s ease;
         }
 
         #Tombol {
@@ -457,7 +471,7 @@
             showMessage(0);
         }
 
-        // MENGGUNAKAN STIKER GITHUB ANDA (ganti dengan nama file stiker Anda)
+        // GANTI DENGAN STIKER GITHUB ANDA
         const stickers = [
             'https://fajarisfan.github.io/Ucapan/stiker1.gif',
             'https://fajarisfan.github.io/Ucapan/stiker2.gif',
@@ -498,7 +512,7 @@
             return stickers[randomIndex];
         }
 
-        // PERBAIKAN UTAMA: Function untuk menampilkan pesan
+        // Main Message Display Function
         function showMessage(index) {
             if (typeitInstance) {
                 typeitInstance.destroy();
@@ -507,7 +521,7 @@
             hideAllStickers();
             document.getElementById("kalimat").innerHTML = '';
 
-            // Add sticker for non-interactive messages dengan container terpisah
+            // Add sticker for non-interactive messages
             if (!messages[index].interactive) {
                 const stikerContainer = document.getElementById('stikerContainer');
                 const newStiker = document.createElement("img");
