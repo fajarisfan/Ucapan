@@ -94,8 +94,9 @@
             display: block;
             opacity: 0;
             transition: all 0.8s ease-in-out;
-            position: relative; /* Ubah dari absolute ke relative */
+            position: relative;
             z-index: 103;
+            border-radius: 10px;
         }
 
         #SuratIn {
@@ -135,7 +136,7 @@
 
         #halo {
             font-size: 18px;
-            position: relative; /* Ubah dari absolute */
+            position: relative;
             text-shadow: 0 2px 2px #000;
             opacity: 0;
             transition: all 0.8s ease-in-out;
@@ -155,7 +156,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px; /* Tambahkan gap untuk spacing */
+            gap: 20px;
         }
 
         blockquote p {
@@ -164,13 +165,13 @@
             line-height: 1.3em;
             transition: all 0.4s ease;
             text-shadow: 1px 1px 2px #000;
-            margin: 0; /* Reset margin default */
+            margin: 0;
         }
 
         blockquote #kalimat {
             text-align: center;
             min-height: 50px;
-            order: 2; /* Pastikan teks di bawah stiker */
+            order: 2;
         }
 
         blockquote .gaya2 {
@@ -180,9 +181,8 @@
             text-shadow: 1px 1px 2px #000;
         }
 
-        /* PERBAIKAN: Container untuk stiker */
         .stiker-container {
-            order: 1; /* Pastikan stiker di atas teks */
+            order: 1;
             width: 100%;
             display: flex;
             justify-content: center;
@@ -199,7 +199,7 @@
             opacity: 0;
             transition: all 0.7s ease;
             z-index: 104;
-            order: 3; /* Hearts di bawah teks */
+            order: 3;
         }
 
         blockquote #kolombaru li {
@@ -457,16 +457,16 @@
             showMessage(0);
         }
 
-        // Sticker URLs Array
+        // MENGGUNAKAN STIKER GITHUB ANDA (ganti dengan nama file stiker Anda)
         const stickers = [
-            'https://feeldreams.github.io/peach1.gif',
-            'https://feeldreams.github.io/peach2.gif',
-            'https://feeldreams.github.io/peach3.gif',
-            'https://feeldreams.github.io/peach4.gif',
-            'https://feeldreams.github.io/peach5.gif',
-            'https://feeldreams.github.io/peach6.gif',
-            'https://feeldreams.github.io/peach7.gif',
-            'https://feeldreams.github.io/peach8.gif'
+            'https://fajarisfan.github.io/Ucapan/stiker1.gif',
+            'https://fajarisfan.github.io/Ucapan/stiker2.gif',
+            'https://fajarisfan.github.io/Ucapan/stiker3.gif',
+            'https://fajarisfan.github.io/Ucapan/stiker4.gif',
+            'https://fajarisfan.github.io/Ucapan/stiker5.gif',
+            'https://fajarisfan.github.io/Ucapan/stiker6.gif',
+            'https://fajarisfan.github.io/Ucapan/stiker7.gif',
+            'https://fajarisfan.github.io/Ucapan/stiker8.gif'
         ];
 
         // Messages Array
